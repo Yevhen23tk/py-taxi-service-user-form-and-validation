@@ -31,7 +31,7 @@ class DriverLicenseUpdateForm(forms.ModelForm):
         return validate_license_number(license_number)
 
 
-class CarCreateForm(UserCreationForm):
+class CarCreateForm(forms.ModelForm):
     drivers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple(),
