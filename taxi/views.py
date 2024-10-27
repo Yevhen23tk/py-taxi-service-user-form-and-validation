@@ -111,7 +111,7 @@ class DriverUpdateView(LoginRequiredMixin, generic.UpdateView):
 @login_required
 def add_driver_to_car(request, pk):
     car = get_object_or_404(Car, pk=pk)
-    if hasattr(request.user, "driver"):
+    if isinstance(request.user, Driver):
         car.drivers.add(request.user)
         return redirect("taxi:car-detail", pk=pk)
     return redirect("taxi:car-detail", pk=pk)
