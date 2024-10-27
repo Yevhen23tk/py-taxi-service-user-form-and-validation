@@ -9,11 +9,6 @@ def validate_license_number(license_number):
             "License number must be exactly 8 characters long."
         )
 
-    if not re.match(r"^[A-Z]{3}", license_number):
-        raise ValidationError(
-            "The first 3 characters must be uppercase letters."
-        )
-
     if not re.match(r"^[A-Z]{3}[0-9]{5}$", license_number):
         raise ValidationError(
             "The last 5 characters must be digits."
