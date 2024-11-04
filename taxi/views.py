@@ -4,8 +4,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import DriverCreateForm, DriverLicenseUpdateForm, CarCreateForm
-from .models import Driver, Car, Manufacturer
+from taxi.forms import DriverCreateForm, DriverLicenseUpdateForm, CarCreateForm
+from taxi.models import Driver, Car, Manufacturer
 
 
 @login_required
@@ -113,7 +113,6 @@ def add_driver_to_car(request, pk):
     car = get_object_or_404(Car, pk=pk)
     if isinstance(request.user, Driver):
         car.drivers.add(request.user)
-        return redirect("taxi:car-detail", pk=pk)
     return redirect("taxi:car-detail", pk=pk)
 
 
@@ -122,5 +121,4 @@ def remove_driver_from_car(request, pk):
     car = get_object_or_404(Car, pk=pk)
     if isinstance(request.user, Driver):
         car.drivers.remove(request.user)
-        return redirect("taxi:car-detail", pk=pk)
     return redirect("taxi:car-detail", pk=pk)
